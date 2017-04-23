@@ -1,0 +1,8 @@
+<h1><%= spot.name %></h1>
+<a href="/spots/<%= spot._id %>/edit">Edit</a>
+<img src="<%= spot.image %>" alt="<%= spot.name %>'s image">
+<p><%= spot.description %></p>
+<form method="post" action="/spots/<%= spot.id %>">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete">
+</form>
