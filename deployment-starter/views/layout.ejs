@@ -12,18 +12,29 @@
   <script src="/js/client.js" charset="utf-8"></script>
 </head>
 <body>
+  <h1>West coast surf spots!</h1>
     <header>
       <ul>
-        <li><a href="/">West Coast surf spots!</a></li>
+        <li><a href="/">Home</a></li>
         <li><a href="/spots">Surf spots</a></li>
         <li><a href="/spots/new">Add surf spot</a></li>
+        <% if (locals.isLoggedIn) { %>
+            <li><a href="/logout">Logout</a></li>
+        <% } else { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Log In</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/register">Register</a>
+          </li>
+        <% } %>
       </ul>
     </header>
     <main>
       <%- body %>
     </main>
     <footer>
-      <p>Made with &hearts; by Lee Noad</p>
+      <p>Made with &hearts; at General Assembly by Lee Noad</p>
     </footer>
   </body>
 </html>

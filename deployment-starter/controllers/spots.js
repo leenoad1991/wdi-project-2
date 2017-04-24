@@ -1,154 +1,77 @@
 const Spot = require('../models/spot');
 
-function spotsIndex(req, res) {
+function spotsIndex(req, res, next) {
   Spot
   .find()
-  .exec()
-  .then(spots => {
-    return res.render('spots', { spots });
-  })
-  .catch(err => {
-    return res.render('error', { error: err });
-  });
+  .then((spots) => res.render('spots/index', { spots }))
+  .catch(next);
 }
 
-module.exports = {
-  index: spotsIndex
-};
-
-function spotsShow(req, res) {
+function spotsShow(req, res, next) {
   Spot
   .findById(req.params.id)
-  .exec()
-  .then(spot => {
-    if (!spot) {
-      return res.render('error', { error: 'No spot found.' });
-    }
-    return res.render('spots/show', { spot });
+  .then((spot) => {
+    if (!spot) return res.status(404).render('statics/404');
+    res.render('spots/show', { spot});
   })
-  .catch(err => {
-    return res.render('error', { error: err });
-  });
+  .catch(next);
 }
-
-
-module.exports = {
-  index: spotsIndex,
-  show: spotsShow
-};
 
 function spotsNew(req, res) {
   return res.render('spots/new');
 }
 
-function spotsCreate(req, res) {
+function spotsCreate(req, res, next) {
   Spot
   .create(req.body)
-  .then(spot => {
-    if (!spot) return res.render('error', { error: 'No spot was created!' });
-    return res.redirect('/spots');
-  })
-  .catch(err => {
-    return res.render('error', { error: err });
-  });
+  .then(() => res.redirect('/spots'))
+  .catch(next);
 }
 
-module.exports = {
-  index: spotsIndex,
-  show: spotsShow,
-  new: spotsNew,
-  create: spotsCreate
-};
-
-function spotsEdit(req, res) {
+function spotsEdit(req, res, next) {
   Spot
   .findById(req.params.id)
-  .exec()
-  .then(spot => {
-    if (!spot) {
-      return res.render('error', { error: 'No spot found.' });
-    }
-    return res.render('spots/edit', { spot });
+  .then((spot) => {
+    if (!spot) return res.status(404).render('statics/404');
+    res.render('spots/edit', { spot });
   })
-  .catch(err => {
-    return res.render('error', { error: err });
-  });
+  .catch(next);
 }
 
-module.exports = {
-  index: spotsIndex,
-  show: spotsShow,
-  new: spotsNew,
-  create: spotsCreate,
-  edit: spotsEdit
-};
-
-function spotsUpdate(req, res) {
+function spotsUpdate(req, res, next) {
   Spot
   .findById(req.params.id)
-  .exec()
-  .then(spot => {
-    if (!spot) {
-      return res.render('error', { error: 'No spot found.' });
-    }
+  .then((spot) => {
+    if (!spot) return res.status(404).render('statics/404');
+
     for (const field in req.body) {
       spot[field] = req.body[field];
     }
+
     return spot.save();
   })
-  .then(spot => {
-    if (!spot) {
-      return res.render('error', { error: 'Something went wrong during the update.' });
-    }
-    return res.render('spots/show', { spot });
-  })
-  .catch(err => {
-    return res.render('error', { error: err });
-  });
+  .then(( spot) => res.redirect(`/spots/${ spot.id}`))
+  .catch(next);
 }
 
-
-module.exports = {
-  index: spotsIndex,
-  show: spotsShow,
-  new: spotsNew,
-  create: spotsCreate,
-  edit: spotsEdit,
-  update: spotsUpdate
-};
-
-function spotsDelete(req, res) {
+function spotsDelete(req, res, next) {
   Spot
-  .findByIdAndRemove(req.params.id)
-  .exec()
-  .then(() => {
-    return res.redirect('/spots');
+  .findById(req.params.id)
+  .then((spot) => {
+    if(!spot) return res.status(404).render('statics/404');
+    return spot.remove();
   })
-  .catch(err => {
-    return res.render('error', { error: err });
-  });
+  .then(() => res.redirect('/spots'))
+  .catch(next);
 }
+
 
 module.exports = {
   index: spotsIndex,
-  show: spotsShow,
   new: spotsNew,
+  show: spotsShow,
   create: spotsCreate,
   edit: spotsEdit,
   update: spotsUpdate,
   delete: spotsDelete
 };
-
-function sessionsCreate(req, res) {
-  User
-  .findOne({ email: req.body.email })
-  .then((user) => {
-    if(!user || !user.validatePassword(req.body.password)) {
-      return res.status(401).render('sessions/new', { message: 'Unrecognised credentials' });
-    }
-
-    req.session.userId = user.id;
-
-    return res.redirect('/');
-  });
-}

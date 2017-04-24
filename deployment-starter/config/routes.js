@@ -1,7 +1,9 @@
 const router        = require('express').Router();
+
 const spots         = require('../controllers/spots');
 const registrations = require('../controllers/registrations');
 const sessions      = require('../controllers/sessions');
+const statics       = require('../controllers/statics');
 
 
 function secureRoute(req, res, next) {
@@ -15,33 +17,35 @@ function secureRoute(req, res, next) {
   return next();
 }
 
+router.route('/')
+.get(statics.index);
+
 router.route('/spots')
-  .get(spots.index)
-  .post(secureRoute, spots.create);
+.get(spots.index)
+.post(secureRoute, spots.create);
 
 router.route('/spots/new')
-  .get(secureRoute, spots.new);
+.get(secureRoute, spots.new);
 
 router.route('/spots/:id')
-  .get(spots.show)
-  .put(secureRoute, spots.update);
-  .delete(secureRoute, spots.delete);
+.get(spots.show)
+.put(secureRoute, spots.update)
+.delete(secureRoute, spots.delete);
 
 
 router.route('/spots/:id/edit')
-    .get(spots.edit);
-
-router.route('/spots/:id')
-  .delete(spots.delete);
+.get(secureRoute, spots.edit);
 
 router.route('/register')
-    .get(registrations.new)
-    .post(registrations.create);
-//
-//
+.get(registrations.new)
+.post(registrations.create);
+
 router.route('/login')
-  .get(sessions.new)
-  .post(sessions.create);
+.get(sessions.new)
+.post(sessions.create);
+
+router.route('/logout')
+.get(sessions.delete);
 
 module.exports = router;
 
