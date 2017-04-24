@@ -6,12 +6,18 @@ const methodOverride  = require('method-override');
 const env             = require('./config/env');
 const router          = require('./config/routes');
 const app             = express();
+const session         = require('express-session');
 
 mongoose.connect(env.db);
 
 app.set('view engine', 'ejs');
 app.set('views', `${__dirname}/views`);
 
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'ssh it\'s a secret',
+  resave: false,
+  saveUninitialized: false
+}));
 app.use(expressLayouts);
 app.use(express.static(`${__dirname}/public`));
 app.use(bodyParser.urlencoded({ extended: true }));

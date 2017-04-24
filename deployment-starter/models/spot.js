@@ -1,14 +1,14 @@
 const mongoose = require('mongoose');
 
-const spotSchema = new mongooseSchema ({
-  Beach: {type: string, trim: true, required: true},
-  Region: {type: string, trim: true, required: true},
-  Image: {type: string, trim: true, required: true},
-  wind: {type: string, trim: true, required: true},
-  wave height: {type: string, trim: true}
+const spotSchema = new mongoose.Schema({
+  Beach: {type: String, trim: true, required: true},
+  Region: {type: String, trim: true, required: true},
+  Image: {type: String, trim: true, required: true},
+  wind: {type: String, trim: true, required: true},
+  height: {type: String, trim: true}
 });
 
-module.exports = mongoose.model('venue', venueSchema)
+module.exports = mongoose.model('Spot', spotSchema);
 
 
 

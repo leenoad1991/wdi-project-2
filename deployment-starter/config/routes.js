@@ -1,24 +1,48 @@
-const express = require('express');
-const router  = express.Router();
-const spots   = require('../controllers/spots');
+const router        = require('express').Router();
+const spots         = require('../controllers/spots');
+const registrations = require('../controllers/registrations');
+const sessions      = require('../controllers/sessions');
 
-router.get('/', (req, res) => res.render('statics/home'));
+
+function secureRoute(req, res, next) {
+  if (!req.session.userId) {
+    return req.session.regenerate(() => {
+      req.flash('danger', 'You must be logged in.');
+      res.redirect('/login');
+    });
+  }
+
+  return next();
+}
 
 router.route('/spots')
   .get(spots.index)
-  .post(spots.create);
+  .post(secureRoute, spots.create);
+
 router.route('/spots/new')
-  .get(spots.new);
+  .get(secureRoute, spots.new);
+
 router.route('/spots/:id')
   .get(spots.show)
-  .put(spots.update);
+  .put(secureRoute, spots.update);
+  .delete(secureRoute, spots.delete);
+
+
 router.route('/spots/:id/edit')
     .get(spots.edit);
+
 router.route('/spots/:id')
   .delete(spots.delete);
-  router.route('/register')
+
+router.route('/register')
     .get(registrations.new)
     .post(registrations.create);
+//
+//
+router.route('/login')
+  .get(sessions.new)
+  .post(sessions.create);
+
 module.exports = router;
 
 //
@@ -29,13 +53,3 @@ module.exports = router;
 //root is the bit after the /(ie amazon/MAKEUP)
 //this is where our verbs go.
 //request and response.
-
-
-
-
-// psudo
-// Set-up
-// authentication
-// Home page styling
-//load google maps when page loads
-//seed Magic Seaweed data to load on google maps
