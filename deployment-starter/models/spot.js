@@ -1,11 +1,9 @@
 const mongoose = require('mongoose');
 
 const spotSchema = new mongoose.Schema({
-  Beach: {type: String, trim: true, required: true},
-  Region: {type: String, trim: true, required: true},
-  Image: {type: String, trim: true, required: true},
-  wind: {type: String, trim: true, required: true},
-  height: {type: String, trim: true}
+  name: {type: String, trim: true, required: true},
+  lat: {type: Number, trim: true},
+  lng: {type: Number, trim: true}
 });
 
 module.exports = mongoose.model('Spot', spotSchema);

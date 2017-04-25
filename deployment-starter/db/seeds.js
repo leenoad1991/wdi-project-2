@@ -1,13 +1,15 @@
 
 const mongoose   = require('mongoose');
-mongoose.Promise = require('bluebird');
+const Promise    = require('bluebird');
+mongoose.Promise = Promise;
+const rp         = require('request-promise');
 
 const dbURI = process.env.MONGODB_URL || 'mongodb://localhost/wdi-project-2';
 
 mongoose.connect(dbURI);
 
 const User  = require('../models/user');
-const Spot  = require('../models/spots');
+const Spot  = require('../models/spot');
 
 User.collection.drop();
 Spot.collection.drop();
@@ -27,27 +29,23 @@ User
 }])
 .then(( users) => {
   console.log(`${users.length} users created`);
-});
-
-Spot
-.create([{
-  beach: 'Venice',
-  Region: 'Los Angeles',
-  image: 'http://1d1abi33xa0d480qio3hozwhher.wpengine.netdna-cdn.com/wp-content/uploads/2013/04/Vence-Boardwalk-VeniceBeach.com_.jpg'
-},
-{
-  beach: 'Oceanside Pier',
-  Region: 'San Diego',
-  Image: 'http://1d1abi33xa0d480qio3hozwhher.wpengine.netdna-cdn.com/wp-content/uploads/2013/04/Vence-Boardwalk-VeniceBeach.com_.jpg'
-},
-{
-  beach: 'Kellys Cove',
-  Region: 'San Francisco.',
-  image: 'http://1d1abi33xa0d480qio3hozwhher.wpengine.netdna-cdn.com/wp-content/uploads/2013/04/Vence-Boardwalk-VeniceBeach.com_.jpg'
-}
-])
-.then((spots) => {
-  console.log(`${spots.length} were created`);
+  return rp({
+    method: 'GET',
+    url: 'http://api.spitcast.com/api/spot/all',
+    json: true
+  });
+})
+.then((data) => {
+  return Promise.map(data, (country) => {
+    return Spot.create({
+      name: country.spot_name,
+      lat: country.latitude,
+      lng: country.longitude
+    });
+  });
+})
+.then((data) => {
+  console.log(`${data.length} were saved`);
 })
 .catch(err => {
   console.log(`Error: ${err}`);

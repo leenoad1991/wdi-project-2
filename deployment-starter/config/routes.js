@@ -20,6 +20,9 @@ function secureRoute(req, res, next) {
 router.route('/')
 .get(statics.index);
 
+router.route('/map')
+.get(spots.map);
+
 router.route('/spots')
 .get(spots.index)
 .post(secureRoute, spots.create);

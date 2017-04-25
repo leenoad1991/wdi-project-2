@@ -1,9 +1,13 @@
 const Spot = require('../models/spot');
 
+function spotsMap(req, res) {
+  res.render('spots/index');
+}
+
 function spotsIndex(req, res, next) {
   Spot
   .find()
-  .then((spots) => res.render('spots/index', { spots }))
+  .then((spots) => res.status(200).json(spots))
   .catch(next);
 }
 
@@ -73,5 +77,6 @@ module.exports = {
   create: spotsCreate,
   edit: spotsEdit,
   update: spotsUpdate,
-  delete: spotsDelete
+  delete: spotsDelete,
+  map: spotsMap
 };
