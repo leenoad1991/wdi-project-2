@@ -38,21 +38,20 @@ app.use((req, res, next) => {
   if (!req.session.userId) return next();
 
   User
-    .findById(req.session.userId)
-    .then((user) => {
-      if(!user) {
-        return req.session.regenerate(() => {
-          res.redirect('/');
-        });
-      }
+  .findById(req.session.userId)
+  .then((user) => {
+    if(!user) {
+      return req.session.regenerate(() => {
+        res.redirect('/');
+      });
+    }
+    
+    req.session.userId = user._id;
+    res.locals.user = user;
+    res.locals.isLoggedIn = true;
 
-      // Re-assign the session id for good measure
-    	req.session.userId = user._id;
-      res.locals.user = user;
-      res.locals.isLoggedIn = true;
-
-      next();
-    });
+    next();
+  });
 });
 
 app.use(router);
