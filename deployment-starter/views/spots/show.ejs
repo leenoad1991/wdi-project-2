@@ -6,3 +6,12 @@
   <input type="hidden" name="_method" value="delete">
   <input type="submit" value="Delete">
 </form>
+
+<%# //comments%>
+<form method="POST" action="/films/<%= spot.id %>/comments">
+  <div class="form-group">
+    <label for="body">Please leave a comment</label>
+    <textarea id="body" name="body" class="form-control"></textarea>
+  </div>
+  <input type="submit" class="btn">
+</form>

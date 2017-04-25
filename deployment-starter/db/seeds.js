@@ -36,11 +36,14 @@ User
   });
 })
 .then((data) => {
-  return Promise.map(data, (country) => {
+  return Promise.map(data, (result) => {
+    console.log(result);
     return Spot.create({
-      name: country.spot_name,
-      lat: country.latitude,
-      lng: country.longitude
+      name: result.spot_name,
+      countyName: result.county_name,
+      lat: result.latitude,
+      lng: result.longitude,
+      spotId: result.spot_id
     });
   });
 })
