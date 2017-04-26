@@ -1,9 +1,10 @@
-
+<div class="container">
 <h1>Login</h1>
 
 <% if (locals.message) { %>
   <p><%= message %></p>
 <% } %>
+
 
 <form method="POST" action="/login">
   <div class="form-group">
@@ -17,3 +18,4 @@
 
   <button class="btn btn-primary">Login</button>
 </form>
+</div>
