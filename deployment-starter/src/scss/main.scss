@@ -1,6 +1,42 @@
-body {
-  font-family: sans-serif;
-  background: orange;
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.videoInsert {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.homepage {
+  position: relative;
+  margin-top: -16px;
+  width: 100%;
+  height: calc(100vh - 57px);
+}
+
+.centered {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100%;
+  transform: translate(-50%,-50%);
+  z-index: 2;
+  color: #fff;
+  text-align: center;
+}
+
+  h1 {
+    font-size: 50px;
+  }
 }
 
 #map {
@@ -9,11 +45,57 @@ body {
   background-color: grey;
 }
 
-nav.navbar {
-  background-color: #2D9292;
-}
 
 .H1 {
   color: white;
-  background-color: green
+  opacity: 0.5;
+  text-align: center;
+  left: 0;
+  line-height: 200px;
+  margin: auto;
+  margin-top: -100px;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  font-family: 'Montserrat', sans-serif;
+}
+
+#newSurfSpot {
+  float: left;
+}
+
+header ul {
+  list-style: none;
+  font-family: 'Montserrat', sans-serif;
+}
+
+footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 20px;
+  width: 100%;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+
+}
+
+.nav-item{
+  width: 110px;
+  margin: 0 0 3px 0;
+  margin-left: 10px;
+}
+
+
+ul {
+  text-align: center;
+}
+
+.navbar {
+  background: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding-bottom: 0;
+  color: white;
 }
