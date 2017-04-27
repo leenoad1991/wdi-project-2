@@ -169,10 +169,3 @@ function addMarkers(map) {
     });
   });
 }
-
-
-//Sort pan.to out.
-//make a logo?
-//Do read me.
-//make map and text colour the same.
-//put photos in grid or something?

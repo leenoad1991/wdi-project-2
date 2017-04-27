@@ -13,51 +13,47 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css?family=Original+Surfer" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Original+Surfer" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
   <script src="/js/client.js" charset="utf-8"></script>
 </head>
 <body>
   <header>
-    <ul>
-      <nav class="navbar navbar-toggleable-md" >
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link btn btn-outline-primary" href="/">Home<a>
+
+    <nav class="navbar navbar-toggleable-md navbar-inverse">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarColor01" >
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/map">Surf spots <span class="sr-only">(current)</span></a>
+          </li>
+          <% if (locals.isLoggedIn) { %>
+            <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
             </li>
-
-            <li class="nav-item active">
-              <a class="nav-link btn btn-outline-primary" href="/map">Surf spots</a>
-            </li>
-
-            <% if (locals.isLoggedIn) { %>
+            <% } else { %>
               <li class="nav-item">
-                <a class="nav-link btn btn-outline-primary" href="/logout">Logout</a>
-              </li>
-              <% } else { %>
-              <li class="nav-item">
-                <a class="nav-link btn btn-outline-primary" href="/login">Log In</a>
+              <a class="nav-link" href="/login">Log In</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link btn btn-outline-primary" href="/register">Register</a>
+              <a class="nav-link" href="/register">Register</a>
               </li>
-            <% } %>
-
-              </li>
+              <% } %>
             </ul>
           </div>
         </nav>
-      </div>
-    </ul>
-  </header>
-  <main>
-    <%- body %>
-  </main>
-  <footer>
-    <p class="container">Made with &hearts; at General Assembly by Lee Noad</p>
-  </footer>
-</body>
-</html>
+      </header>
+      <main>
+        <%- body %>
+      </main>
+      <footer>
+        <p class="container">Made with &hearts; at General Assembly by Lee Noad</p>
+      </footer>
+    </body>
+    </html>

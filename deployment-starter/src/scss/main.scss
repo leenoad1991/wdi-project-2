@@ -55,28 +55,28 @@ footer {
   font-family: 'Pacifico', cursive;
   color: #fff;
   background-color: #4EBCBC;
-  opacity: 0.8;
 }
 
 .navbar-nav {
   margin: 0 auto;
+  padding: 8px;
 }
 
-.nav-item{
-  width: 110px;
-  margin: 0 0 3px 0;
-  margin-left: 10px;
-  font-family: 'Raleway', sans-serif;
+.navbar-toggleable-md .navbar-nav .nav-link{
+  padding-left:2.5rem;
+  padding-right: 2.5rem;
+  margin: 0px 40px;
+  border-radius: 1px solid;
 }
 
+a:hover{
+  border-color: white !important;
+  background-color: #4EBCBC !important;
+  color:  white!important;
+  float: left;
 
-ul {
-  text-align: center;
 }
 
-
-navbar-toggleable-md {
-  border-color: white;
-  background-color: #4EBCBC;
-  color: white;
-  }
+#navbar-toggler navbar-toggler-right{
+  border-color: red:
+}
