@@ -45,7 +45,7 @@ function initMap() {
           "elementType": "labels.text.fill",
           "stylers": [
             {
-              "color": "#444444"
+              "color": "white"
             }
           ]
         },
@@ -54,7 +54,7 @@ function initMap() {
           "elementType": "all",
           "stylers": [
             {
-              "color": "#f2f2f2"
+              "color": "white"
             }
           ]
         },
@@ -111,7 +111,7 @@ function initMap() {
           "elementType": "all",
           "stylers": [
             {
-              "color": "#46bcec"
+              "color": "#4EBCBC"
             },
             {
               "visibility": "on"
@@ -122,8 +122,8 @@ function initMap() {
       zoom: 5,
       center: California
 
-      // zoom: 5,
-      // map.panTo (California)
+      //
+      // map.panTo (lat: 37.4786298, lng: -125.6627441)
     });
     addMarkers(map);
   }
@@ -171,12 +171,8 @@ function addMarkers(map) {
 }
 
 
-//nav bar - space evenly and place in the middle, underneath logo.
-//Google fonts. (California Sans)
 //Sort pan.to out.
 //make a logo?
-//add music?
 //Do read me.
 //make map and text colour the same.
-//remove my details from log in page.
 //put photos in grid or something?

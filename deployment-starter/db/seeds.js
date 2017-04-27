@@ -14,17 +14,17 @@ const Spot  = require('../models/spot');
 User.collection.drop();
 Spot.collection.drop();
 
-// User
-// .create([{
-//   username: 'Lee Noad',
-//   email: 'lee@lee.com',
-//   password: 'password',
-//   passwordConfirmation: 'password'
-// },{
-//   username: 'Nat Huitson',
-//   email: 'nat@nat.com',
-//   password: 'password',
-//   passwordConfirmation: 'password'
+User
+.create([{
+  username: 'Lee Noad',
+  email: 'lee@lee.com',
+  password: 'password',
+  passwordConfirmation: 'password'
+},{
+  username: 'Nat Huitson',
+  email: 'nat@nat.com',
+  password: 'password',
+  passwordConfirmation: 'password'
 
 }])
 .then(( users) => {

@@ -1,6 +1,7 @@
 * {
   padding: 0;
   margin: 0;
+  font-family: 'Raleway', sans-serif;
 }
 
 .videoInsert {
@@ -18,15 +19,17 @@
 
 .homepage {
   position: relative;
-  margin-top: -16px;
+  margin-top: 5px;
+  font-size: 50px;
   width: 100%;
   height: calc(100vh - 57px);
+  font-family: 'Pacifico', cursive;
 }
 
 .centered {
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 5%;
   width: 100%;
   transform: translate(-50%,-50%);
   z-index: 2;
@@ -34,10 +37,6 @@
   text-align: center;
 }
 
-  h1 {
-    font-size: 50px;
-  }
-}
 
 #map {
   width: 100%;
@@ -46,41 +45,28 @@
 }
 
 
-.H1 {
-  color: red;
-  opacity: 0.5;
-  text-align: center;
-  left: 0;
-  line-height: 200px;
-  margin: auto;
-  margin-top: -100px;
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  font-family: 'Original Surfer', cursive;
-}
-
-
-header ul {
-  list-style: none;
-  font-family: 'Montserrat', sans-serif;
-}
-
 footer {
-  position: absolute;
+  position: fixed;
   left: 0;
   bottom: 0;
   height: 20px;
   width: 100%;
   text-align: center;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Pacifico', cursive;
+  color: #fff;
+  background-color: #4EBCBC;
+  opacity: 0.8;
+}
 
+.navbar-nav {
+  margin: 0 auto;
 }
 
 .nav-item{
   width: 110px;
   margin: 0 0 3px 0;
   margin-left: 10px;
+  font-family: 'Raleway', sans-serif;
 }
 
 
@@ -88,11 +74,9 @@ ul {
   text-align: center;
 }
 
-.navbar {
-  background: transparent;
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding-bottom: 0;
+
+navbar-toggleable-md {
+  border-color: white;
+  background-color: #4EBCBC;
   color: white;
-}
+  }
