@@ -1,21 +1,14 @@
 <div class="container">
 
+<p class="lat" style="display:none;"><%= spot.lat %></p>
+<p class="lon" style="display:none;"><%= spot.lng %></p>
 
 <h1><%= spot.name %></h1>
-<a href="/spots/<%= spot._id %>/edit">Edit</a>
 <img src="<%= spot.image %>" alt="<%= spot.name %>'s image">
 <p><%= spot.description %></p>
-<form method="post" action="/spots/<%= spot.id %>">
-  <input type="hidden" name="_method" value="delete">
-  <input type="submit" value="Delete">
-</form>
 
-<%# //comments%>
-<form method="POST" action="/films/<%= spot.id %>/comments">
-  <div class="form-group">
-    <label for="body">Please leave a comment</label>
-    <textarea id="body" name="body" class="form-control"></textarea>
-  </div>
-  <input type="submit" class="btn">
-</form>
+
+<div class="photoContainer"></div>
+
+
 </div>

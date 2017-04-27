@@ -3,24 +3,130 @@ const google = google;
 $(init);
 
 function init() {
+  getFlikrPhotos();
   initMap();
   const video = document.getElementById('video');
-  video.currentTime = 10;
-  video.play();
+  if (video) {
+    video.currentTime = 10;
+    video.play();
+  }
 }
 
+function getFlikrPhotos() {
+  var lat = $('.lat').text();
+  var lon = $('.lon').text();
+  console.log(lat, lon);
+  if ((lat) && (lon)) {
+    $.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=b630c0b08a57f8c570460f2b9694285f&lat=${lat}&lon=${lon}&min_taken_date=1420070400&format=json&nojsoncallback=?`)
+    .done(data => {
+      console.log(data.photo);
+      data.photos.photo.forEach(photo => {
+        console.log(photo);
+        $(`<img src="http://farm${photo.farm}.static.flickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg">`).appendTo($('.photoContainer'));
+        // http://farm3.static.flickr.com/2531/3729689790_ea9c38a675_b.jpg
+      });
+    });
+  }
+}
+
+
+
 function initMap() {
+
   var California = {lat: 37.4786298, lng: -125.6627441};
   const mapCanvas = document.getElementById('map');
-  console.log('map');
-  console.log(mapCanvas);
-  var map = new google.maps.Map(mapCanvas, {
-    zoom: 5,
-    center: California
-    // zoom: 5,
-    // map.panTo (California)
-  });
-  addMarkers(map);
+  if (mapCanvas) {
+    console.log('map');
+    console.log(mapCanvas);
+    var map = new google.maps.Map(mapCanvas, {
+      styles: [
+        {
+          "featureType": "administrative",
+          "elementType": "labels.text.fill",
+          "stylers": [
+            {
+              "color": "#444444"
+            }
+          ]
+        },
+        {
+          "featureType": "landscape",
+          "elementType": "all",
+          "stylers": [
+            {
+              "color": "#f2f2f2"
+            }
+          ]
+        },
+        {
+          "featureType": "poi",
+          "elementType": "all",
+          "stylers": [
+            {
+              "visibility": "off"
+            }
+          ]
+        },
+        {
+          "featureType": "road",
+          "elementType": "all",
+          "stylers": [
+            {
+              "saturation": -100
+            },
+            {
+              "lightness": 45
+            }
+          ]
+        },
+        {
+          "featureType": "road.highway",
+          "elementType": "all",
+          "stylers": [
+            {
+              "visibility": "simplified"
+            }
+          ]
+        },
+        {
+          "featureType": "road.arterial",
+          "elementType": "labels.icon",
+          "stylers": [
+            {
+              "visibility": "off"
+            }
+          ]
+        },
+        {
+          "featureType": "transit",
+          "elementType": "all",
+          "stylers": [
+            {
+              "visibility": "off"
+            }
+          ]
+        },
+        {
+          "featureType": "water",
+          "elementType": "all",
+          "stylers": [
+            {
+              "color": "#46bcec"
+            },
+            {
+              "visibility": "on"
+            }
+          ]
+        }
+      ],
+      zoom: 5,
+      center: California
+
+      // zoom: 5,
+      // map.panTo (California)
+    });
+    addMarkers(map);
+  }
 }
 
 function addMarkers(map) {
@@ -30,79 +136,8 @@ function addMarkers(map) {
       const location = {lat: spot.lat, lng: spot.lng};
       var marker = new google.maps.Marker({
         position: location,
-        map: map,
-        style: [
-          {
-            'featureType': 'road',
-            'stylers': [
-              {
-                'visibility': 'off'
-              }
-            ]
-          },
-          {
-            'featureType': 'transit',
-            'stylers': [
-              {
-                'visibility': 'off'
-              }
-            ]
-          },
-          {
-            'featureType': 'administrative.province',
-            'stylers': [
-              {
-                'visibility': 'off'
-              }
-            ]
-          },
-          {
-            'featureType': 'poi.park',
-            'elementType': 'geometry',
-            'stylers': [
-              {
-                'visibility': 'off'
-              }
-            ]
-          },
-          {
-            'featureType': 'water',
-            'stylers': [
-              {
-                'color': '#004b76'
-              }
-            ]
-          },
-          {
-            'featureType': 'landscape.natural',
-            'stylers': [
-              {
-                'visibility': 'on'
-              },
-              {
-                'color': '#fff6cb'
-              }
-            ]
-          },
-          {
-            'featureType': 'administrative.country',
-            'elementType': 'geometry.stroke',
-            'stylers': [
-              {
-                'visibility': 'on'
-              },
-              {
-                'color': '#7f7d7a'
-              },
-              {
-                'lightness': 10
-              },
-              {
-                'weight': 1
-              }
-            ]
-          }
-        ]
+        map: map
+
 
       });
 
@@ -135,8 +170,13 @@ function addMarkers(map) {
   });
 }
 
-//sort markers on map.
-//nav bar - space evenly and place in the middle
-//sort out 'add a spot'
-//Google fonts.
+
+//nav bar - space evenly and place in the middle, underneath logo.
+//Google fonts. (California Sans)
 //Sort pan.to out.
+//make a logo?
+//add music?
+//Do read me.
+//make map and text colour the same.
+//remove my details from log in page.
+//put photos in grid or something?

@@ -5,11 +5,7 @@ const spotSchema = new mongoose.Schema({
   countyName: {type: String, trim: true, required: true},
   lat: {type: Number, trim: true},
   lng: {type: Number, trim: true},
-  spotId: {type: Number, trim: true},
-  comments: [{
-    body: { type: String, trim: true, required: true },
-    user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true }
-  }]
+  spotId: {type: Number, trim: true}
 });
 
 module.exports = mongoose.model('Spot', spotSchema);

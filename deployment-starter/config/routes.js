@@ -4,7 +4,6 @@ const spots         = require('../controllers/spots');
 const registrations = require('../controllers/registrations');
 const sessions      = require('../controllers/sessions');
 const statics       = require('../controllers/statics');
-const comments      = require('../controllers/comments');
 
 
 function secureRoute(req, res, next) {
@@ -40,8 +39,6 @@ router.route('/spots/:id')
 router.route('/spots/:id/edit')
 .get(secureRoute, spots.edit);
 
-router.route('/spots/:id/comments')
-.post(comments.create);
 
 router.route('/register')
 .get(registrations.new)
@@ -55,12 +52,3 @@ router.route('/logout')
 .get(sessions.delete);
 
 module.exports = router;
-
-//
-// /register
-// /login
-// /surfspots
-
-//root is the bit after the /(ie amazon/MAKEUP)
-//this is where our verbs go.
-//request and response.
