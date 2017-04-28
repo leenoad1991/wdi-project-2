@@ -5,16 +5,16 @@
 }
 
 .videoInsert {
-  position: absolute;
-  right: 0;
-  bottom: 0;
+  z-index: -100;
+  position: fixed;
+  top: 50%;
+  left: 50%;
   min-width: 100%;
   min-height: 100%;
   width: auto;
   height: auto;
   z-index: -100;
-  background-size: cover;
-  overflow: hidden;
+  transform: translateX(-50%) translateY(-50%);
 }
 
 .homepage {
@@ -24,17 +24,6 @@
   width: 100%;
   height: calc(100vh - 57px);
   font-family: 'Pacifico', cursive;
-}
-
-.centered {
-  position: absolute;
-  left: 50%;
-  top: 5%;
-  width: 100%;
-  transform: translate(-50%,-50%);
-  z-index: 2;
-  color: #fff;
-  text-align: center;
 }
 
 
@@ -74,9 +63,22 @@ a:hover{
   background-color: #4EBCBC !important;
   color:  white!important;
   float: left;
-
 }
 
-#navbar-toggler navbar-toggler-right{
-  border-color: red:
+.navbar {
+  background: #4EBCBC;
+}
+
+.hide-nav {
+  .navbar {
+    background: transparent;
+  }
+
+  h1 {
+    height: 100vh;
+    line-height: 20vh;
+    text-align: center;
+    color: white;
+    font-size: 6.5vw;
+  }
 }

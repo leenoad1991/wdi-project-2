@@ -17,9 +17,14 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
   <script src="/js/client.js" charset="utf-8"></script>
 </head>
-<body>
+<body <% if (locals.path === "/") { %>class="hide-nav"<% } %>>
+  <% if (locals.path === "/") { %>
+    <video id="video" class="videoInsert">
+      <source src="/images/homepage-video.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+  <% } %>
   <header>
-
     <nav class="navbar navbar-toggleable-md navbar-inverse">
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -50,10 +55,13 @@
         </nav>
       </header>
       <main>
-        <%- body %>
-      </main>
-      <footer>
-        <p class="container">Made with &hearts; at General Assembly by Lee Noad</p>
-      </footer>
-    </body>
-    </html>
+        <% for (const type in messages) { %>
+          <p class="alert alert-<%= type %>"<%= messages[type] %></p>
+          <% } %>
+          <%- body %>
+        </main>
+        <footer>
+          <p class="container">Made with &hearts; at General Assembly by Lee Noad</p>
+        </footer>
+      </body>
+      </html>

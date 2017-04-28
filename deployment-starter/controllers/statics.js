@@ -4,7 +4,7 @@ function staticsIndex(req, res) {
   User
   .find()
   .exec()
-  .then(( users) => res.render('statics/index',  {users}));
+  .then(( users) => res.render('statics/index',  {users, path: '/'}));
 }
 
 module.exports = {

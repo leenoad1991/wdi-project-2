@@ -10,6 +10,7 @@ function init() {
     video.currentTime = 10;
     video.play();
   }
+  $('.something').css('background-color', 'transparent');
 }
 
 function getFlikrPhotos() {
@@ -23,7 +24,6 @@ function getFlikrPhotos() {
       data.photos.photo.forEach(photo => {
         console.log(photo);
         $(`<img src="http://farm${photo.farm}.static.flickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg">`).appendTo($('.photoContainer'));
-        // http://farm3.static.flickr.com/2531/3729689790_ea9c38a675_b.jpg
       });
     });
   }
@@ -41,87 +41,86 @@ function initMap() {
     var map = new google.maps.Map(mapCanvas, {
       styles: [
         {
-          "featureType": "administrative",
-          "elementType": "labels.text.fill",
-          "stylers": [
+          'featureType': 'administrative',
+          'elementType': 'labels.text.fill',
+          'stylers': [
             {
-              "color": "white"
+              'color': 'white'
             }
           ]
         },
         {
-          "featureType": "landscape",
-          "elementType": "all",
-          "stylers": [
+          'featureType': 'landscape',
+          'elementType': 'all',
+          'stylers': [
             {
-              "color": "white"
+              'color': 'white'
             }
           ]
         },
         {
-          "featureType": "poi",
-          "elementType": "all",
-          "stylers": [
+          'featureType': 'poi',
+          'elementType': 'all',
+          'stylers': [
             {
-              "visibility": "off"
+              'visibility': 'off'
             }
           ]
         },
         {
-          "featureType": "road",
-          "elementType": "all",
-          "stylers": [
+          'featureType': 'road',
+          'elementType': 'all',
+          'stylers': [
             {
-              "saturation": -100
+              'saturation': -100
             },
             {
-              "lightness": 45
+              'lightness': 45
             }
           ]
         },
         {
-          "featureType": "road.highway",
-          "elementType": "all",
-          "stylers": [
+          'featureType': 'road.highway',
+          'elementType': 'all',
+          'stylers': [
             {
-              "visibility": "simplified"
+              'visibility': 'simplified'
             }
           ]
         },
         {
-          "featureType": "road.arterial",
-          "elementType": "labels.icon",
-          "stylers": [
+          'featureType': 'road.arterial',
+          'elementType': 'labels.icon',
+          'stylers': [
             {
-              "visibility": "off"
+              'visibility': 'off'
             }
           ]
         },
         {
-          "featureType": "transit",
-          "elementType": "all",
-          "stylers": [
+          'featureType': 'transit',
+          'elementType': 'all',
+          'stylers': [
             {
-              "visibility": "off"
+              'visibility': 'off'
             }
           ]
         },
         {
-          "featureType": "water",
-          "elementType": "all",
-          "stylers": [
+          'featureType': 'water',
+          'elementType': 'all',
+          'stylers': [
             {
-              "color": "#4EBCBC"
+              'color': '#4EBCBC'
             },
             {
-              "visibility": "on"
+              'visibility': 'on'
             }
           ]
         }
       ],
       zoom: 5,
       center: California
-
       //
       // map.panTo (lat: 37.4786298, lng: -125.6627441)
     });
